@@ -12,6 +12,7 @@ import com.feeyo.jedis.XProtocol.Command;
 
 import redis.clients.util.SafeEncoder;
 
+
 public class ClientX extends ConnectionX {
 	
 	public enum LIST_POSITION {
