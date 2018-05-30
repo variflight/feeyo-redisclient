@@ -6,6 +6,9 @@ import com.feeyo.jedis.JedisXPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 public class JedisXTest {
+
+	private static JedisXPool jedisXPool;
+
 	public static void main(String[] args) throws InterruptedException {
 		// 连接池中最大空闲的连接数
 		int maxIdle = 100;
@@ -42,7 +45,7 @@ public class JedisXTest {
 		jedisPoolConfig.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
 		jedisPoolConfig.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
 
-		JedisXPool jedisXPool = new JedisXPool(jedisPoolConfig, "127.0.0.1", 8066, 30000, "tod_yt_kfktest_fdafd4809kimchgdfh");
+		jedisXPool = new JedisXPool(jedisPoolConfig, "127.0.0.1", 8066, 30000, "tod_yt_kfktest_fdafd4809kimchgdfh");
 		while (true) {
 			JedisX jedisX = null;
 			try {
