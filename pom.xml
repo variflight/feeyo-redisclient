@@ -4,7 +4,7 @@
 
 	<groupId>jedis-ext</groupId>
 	<artifactId>jedis-ext</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>2.9</version>
 	<packaging>jar</packaging>
 
 	<name>jedis-ext</name>
