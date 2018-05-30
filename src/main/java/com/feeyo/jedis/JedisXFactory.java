@@ -12,13 +12,14 @@ import redis.clients.jedis.exceptions.JedisException;
 /**
  * PoolableObjectFactory custom impl.
  */
-public class FeeyoJedisFactory implements PooledObjectFactory<FeeyoJedis> {
+public class JedisXFactory implements PooledObjectFactory<JedisX> {
+	
 	private final AtomicReference<HostAndPort> hostAndPort = new AtomicReference<HostAndPort>();
 	private final int connectionTimeout;
 	private final int soTimeout;
 	private final String password;
 
-	public FeeyoJedisFactory(final String host, final int port, final int connectionTimeout, final int soTimeout,
+	public JedisXFactory(final String host, final int port, final int connectionTimeout, final int soTimeout,
 			final String password) {
 		this.hostAndPort.set(new HostAndPort(host, port));
 		this.connectionTimeout = connectionTimeout;
@@ -30,11 +31,11 @@ public class FeeyoJedisFactory implements PooledObjectFactory<FeeyoJedis> {
 		this.hostAndPort.set(hostAndPort);
 	}
 
-	public void activateObject(PooledObject<FeeyoJedis> pooledJedis) throws Exception {
+	public void activateObject(PooledObject<JedisX> pooledJedis) throws Exception {
 	}
 
-	public void destroyObject(PooledObject<FeeyoJedis> pooledJedis) throws Exception {
-		final FeeyoJedis jedis = pooledJedis.getObject();
+	public void destroyObject(PooledObject<JedisX> pooledJedis) throws Exception {
+		final JedisX jedis = pooledJedis.getObject();
 		if (jedis.isConnected()) {
 			try {
 				try {
@@ -49,10 +50,10 @@ public class FeeyoJedisFactory implements PooledObjectFactory<FeeyoJedis> {
 
 	}
 
-	public PooledObject<FeeyoJedis> makeObject() throws Exception {
+	public PooledObject<JedisX> makeObject() throws Exception {
 		final HostAndPort hostAndPort = this.hostAndPort.get();
 
-		final FeeyoJedis jedis = new FeeyoJedis(hostAndPort.getHost(), hostAndPort.getPort(), connectionTimeout,
+		final JedisX jedis = new JedisX(hostAndPort.getHost(), hostAndPort.getPort(), connectionTimeout,
 				soTimeout);
 
 		try {
@@ -65,16 +66,16 @@ public class FeeyoJedisFactory implements PooledObjectFactory<FeeyoJedis> {
 			throw je;
 		}
 
-		return new DefaultPooledObject<FeeyoJedis>(jedis);
+		return new DefaultPooledObject<JedisX>(jedis);
 
 	}
 
-	public void passivateObject(PooledObject<FeeyoJedis> pooledJedis) throws Exception {
+	public void passivateObject(PooledObject<JedisX> pooledJedis) throws Exception {
 		// TODO maybe should select db 0? Not sure right now.
 	}
 
-	public boolean validateObject(PooledObject<FeeyoJedis> pooledJedis) {
-		final FeeyoJedis jedis = pooledJedis.getObject();
+	public boolean validateObject(PooledObject<JedisX> pooledJedis) {
+		final JedisX jedis = pooledJedis.getObject();
 		try {
 			HostAndPort hostAndPort = this.hostAndPort.get();
 

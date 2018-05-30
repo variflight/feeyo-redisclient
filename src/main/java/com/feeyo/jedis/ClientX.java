@@ -1,18 +1,19 @@
 package com.feeyo.jedis;
 
-import static com.feeyo.jedis.FeeyoProtocol.Command.AUTH;
-import static com.feeyo.jedis.FeeyoProtocol.Command.KPOP;
-import static com.feeyo.jedis.FeeyoProtocol.Command.QUIT;
+import static com.feeyo.jedis.XProtocol.Command.AUTH;
+import static com.feeyo.jedis.XProtocol.Command.KPOP;
+import static com.feeyo.jedis.XProtocol.Command.QUIT;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLParameters;
 import javax.net.ssl.SSLSocketFactory;
 
-import com.feeyo.jedis.FeeyoProtocol.Command;
+import com.feeyo.jedis.XProtocol.Command;
 
 import redis.clients.util.SafeEncoder;
 
-public class FeeyoClient extends FeeyoConnection {
+public class ClientX extends ConnectionX {
+	
 	public enum LIST_POSITION {
 		BEFORE, AFTER;
 		public final byte[] raw;
@@ -24,23 +25,23 @@ public class FeeyoClient extends FeeyoConnection {
 
 	private String password;
 
-	public FeeyoClient() {
+	public ClientX() {
 		super();
 	}
 
-	public FeeyoClient(final String host) {
+	public ClientX(final String host) {
 		super(host);
 	}
 
-	public FeeyoClient(final String host, final int port) {
+	public ClientX(final String host, final int port) {
 		super(host, port);
 	}
 
-	public FeeyoClient(final String host, final int port, final boolean ssl) {
+	public ClientX(final String host, final int port, final boolean ssl) {
 		super(host, port, ssl);
 	}
 
-	public FeeyoClient(final String host, final int port, final boolean ssl, final SSLSocketFactory sslSocketFactory,
+	public ClientX(final String host, final int port, final boolean ssl, final SSLSocketFactory sslSocketFactory,
 			final SSLParameters sslParameters, final HostnameVerifier hostnameVerifier) {
 		super(host, port, ssl, sslSocketFactory, sslParameters, hostnameVerifier);
 	}

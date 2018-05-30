@@ -1,8 +1,11 @@
-package com.feeyo.jedis;
+package com.feeyo.jedis.test;
+
+import com.feeyo.jedis.JedisX;
+import com.feeyo.jedis.JedisXPool;
 
 import redis.clients.jedis.JedisPoolConfig;
 
-public class JedisPoolTest {
+public class JedisXTest {
 	public static void main(String[] args) throws InterruptedException {
 		// 连接池中最大空闲的连接数
 		int maxIdle = 100;
@@ -39,22 +42,22 @@ public class JedisPoolTest {
 		jedisPoolConfig.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
 		jedisPoolConfig.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
 
-		FeeyoJedisPool jedisPool = new FeeyoJedisPool(jedisPoolConfig, "127.0.0.1", 8066, 30000, "tod_yt_kfktest_fdafd4809kimchgdfh");
+		JedisXPool jedisXPool = new JedisXPool(jedisPoolConfig, "127.0.0.1", 8066, 30000, "tod_yt_kfktest_fdafd4809kimchgdfh");
 		while (true) {
-			FeeyoJedis jc = null;
+			JedisX jedisX = null;
 			try {
-				jc = jedisPool.getResource();
-				System.out.println(jc.kpush("test01", "111"));
-				System.out.println(jc.kpush("test01", "111", 2));
-				System.out.println(jc.kpop("test01"));
-				System.out.println(jc.kpop("test01", 1, 0));
-				System.out.println(jc.kpartitions("test01"));
-				System.out.println(jc.koffset("test01", "0", "-1"));
+				jedisX = jedisXPool.getResource();
+				System.out.println(jedisX.kpush("test01", "111"));
+				System.out.println(jedisX.kpush("test01", "111", 2));
+				System.out.println(jedisX.kpop("test01"));
+				System.out.println(jedisX.kpop("test01", 1, 0));
+				System.out.println(jedisX.kpartitions("test01"));
+				System.out.println(jedisX.koffset("test01", "0", "-1"));
 			} catch (Exception e) {
 				
 			} finally {
-				if (jc != null)
-					jc.close();
+				if (jedisX != null)
+					jedisX.close();
 			}
 		}
 		

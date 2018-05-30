@@ -13,7 +13,7 @@ import javax.net.ssl.SSLParameters;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
-import com.feeyo.jedis.FeeyoProtocol.Command;
+import com.feeyo.jedis.XProtocol.Command;
 
 import redis.clients.jedis.BuilderFactory;
 import redis.clients.jedis.Protocol;
@@ -24,7 +24,7 @@ import redis.clients.util.RedisInputStream;
 import redis.clients.util.RedisOutputStream;
 import redis.clients.util.SafeEncoder;
 
-public class FeeyoConnection implements Closeable {
+public class ConnectionX implements Closeable {
 
 	private static final byte[][] EMPTY_ARGS = new byte[0][];
 
@@ -42,25 +42,25 @@ public class FeeyoConnection implements Closeable {
 	private SSLParameters sslParameters;
 	private HostnameVerifier hostnameVerifier;
 
-	public FeeyoConnection() {
+	public ConnectionX() {
 	}
 
-	public FeeyoConnection(final String host) {
+	public ConnectionX(final String host) {
 		this.host = host;
 	}
 
-	public FeeyoConnection(final String host, final int port) {
+	public ConnectionX(final String host, final int port) {
 		this.host = host;
 		this.port = port;
 	}
 
-	public FeeyoConnection(final String host, final int port, final boolean ssl) {
+	public ConnectionX(final String host, final int port, final boolean ssl) {
 		this.host = host;
 		this.port = port;
 		this.ssl = ssl;
 	}
 
-	public FeeyoConnection(final String host, final int port, final boolean ssl, SSLSocketFactory sslSocketFactory,
+	public ConnectionX(final String host, final int port, final boolean ssl, SSLSocketFactory sslSocketFactory,
 			SSLParameters sslParameters, HostnameVerifier hostnameVerifier) {
 		this.host = host;
 		this.port = port;
@@ -111,7 +111,7 @@ public class FeeyoConnection implements Closeable {
 		}
 	}
 
-	protected FeeyoConnection sendCommand(final Command cmd, final String... args) {
+	protected ConnectionX sendCommand(final Command cmd, final String... args) {
 		final byte[][] bargs = new byte[args.length][];
 		for (int i = 0; i < args.length; i++) {
 			bargs[i] = SafeEncoder.encode(args[i]);
@@ -119,14 +119,14 @@ public class FeeyoConnection implements Closeable {
 		return sendCommand(cmd, bargs);
 	}
 
-	protected FeeyoConnection sendCommand(final Command cmd) {
+	protected ConnectionX sendCommand(final Command cmd) {
 		return sendCommand(cmd, EMPTY_ARGS);
 	}
 
-	protected FeeyoConnection sendCommand(final Command cmd, final byte[]... args) {
+	protected ConnectionX sendCommand(final Command cmd, final byte[]... args) {
 		try {
 			connect();
-			FeeyoProtocol.sendCommand(outputStream, cmd, args);
+			XProtocol.sendCommand(outputStream, cmd, args);
 			pipelinedCommands++;
 			return this;
 		} catch (JedisConnectionException ex) {
