@@ -13,7 +13,7 @@ import javax.net.ssl.SSLParameters;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
-import com.feeyo.jedis.XProtocol.Command;
+import com.feeyo.jedis.ProtocolX.Command;
 
 import redis.clients.jedis.BuilderFactory;
 import redis.clients.jedis.Protocol;
@@ -126,7 +126,7 @@ public class ConnectionX implements Closeable {
 	protected ConnectionX sendCommand(final Command cmd, final byte[]... args) {
 		try {
 			connect();
-			XProtocol.sendCommand(outputStream, cmd, args);
+			ProtocolX.sendCommand(outputStream, cmd, args);
 			pipelinedCommands++;
 			return this;
 		} catch (JedisConnectionException ex) {

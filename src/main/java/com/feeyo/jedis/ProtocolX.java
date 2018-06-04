@@ -17,7 +17,7 @@ import redis.clients.util.RedisInputStream;
 import redis.clients.util.RedisOutputStream;
 import redis.clients.util.SafeEncoder;
 
-public class XProtocol {
+public class ProtocolX {
 
 	private static final String ASK_RESPONSE = "ASK";
 	private static final String MOVED_RESPONSE = "MOVED";
@@ -79,7 +79,7 @@ public class XProtocol {
 	public static final byte[] POSITIVE_INFINITY_BYTES = "+inf".getBytes();
 	public static final byte[] NEGATIVE_INFINITY_BYTES = "-inf".getBytes();
 
-	private XProtocol() {
+	private ProtocolX() {
 		// this prevent the class from instantiation
 	}
 

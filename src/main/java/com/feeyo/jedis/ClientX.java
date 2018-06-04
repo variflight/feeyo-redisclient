@@ -1,14 +1,14 @@
 package com.feeyo.jedis;
 
-import static com.feeyo.jedis.XProtocol.Command.AUTH;
-import static com.feeyo.jedis.XProtocol.Command.KPOP;
-import static com.feeyo.jedis.XProtocol.Command.QUIT;
+import static com.feeyo.jedis.ProtocolX.Command.AUTH;
+import static com.feeyo.jedis.ProtocolX.Command.KPOP;
+import static com.feeyo.jedis.ProtocolX.Command.QUIT;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLParameters;
 import javax.net.ssl.SSLSocketFactory;
 
-import com.feeyo.jedis.XProtocol.Command;
+import com.feeyo.jedis.ProtocolX.Command;
 
 import redis.clients.util.SafeEncoder;
 
