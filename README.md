@@ -17,10 +17,10 @@
 
 ### 怎么使用
 	1、联系OPS， 开通账户及Kafka队列服务
-	2、通过 feeyo-redisclient-ext 中的工具类，使用 KPUSH & KPOP 就可以了
+	2、feeyo-redisclient-ext 已经含了jedis2.9的扩展, PHP & python 操作的工具类， 你可以使用他们扩展的 KPUSH & KPOP 指令
 	
 	
-### 事例， 使用 redis-cli，操作
+### Demo
 	redis xxxxx:8080> kpush test01 content
 	1) "1"
 	2) “4812903"
