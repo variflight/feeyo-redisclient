@@ -1,4 +1,4 @@
-# feeyo-redisclient-ext
+# feeyo-redisclient
 
 基于 redis 协议，扩展了几条指令，用于操作 kafka topic
 
@@ -18,7 +18,7 @@
 
 ### 怎么使用
 	1、联系OPS， 开通账户及Kafka队列服务
-	2、feeyo-redisclient-ext 已经含了jedis2.9的扩展、PHP 、Python 操作的工具类， 
+	2、feeyo-redisclient 已经含了jedis2.9的扩展、PHP 、Python 操作的工具类， 
 	你可以使用这些扩展，也可以自己实现
 	
 	
