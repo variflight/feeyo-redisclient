@@ -11,13 +11,14 @@
 	KOFFSET 	{topic} {partition} {time}	
 	
 ### 为什么要使用
-	1、redis 中的 list/set 满足不了真正的队列需求
-	2、你一定会有场景需要堆积、需要再次消费、需要多人共同消费，总的来说使用场景很多
-	3、你可以很平滑的接入到我们的多租户体系、监控体系
+	1、redis 中的 list 满足不了真正的队列需求，毕竟内存不是磁盘，
+	你需要数据堆积、再次消费、多人共同消费
+	2、平滑的接入到我们的多租户体系、监控体系
 
 ### 怎么使用
 	1、联系OPS， 开通账户及Kafka队列服务
-	2、feeyo-redisclient-ext 已经含了jedis2.9的扩展, PHP & python 操作的工具类， 你可以使用他们扩展的 KPUSH & KPOP 指令
+	2、feeyo-redisclient-ext 已经含了jedis2.9的扩展、PHP 、Python 操作的工具类， 
+	你可以使用这些扩展，也可以自己实现
 	
 	
 ### Demo
