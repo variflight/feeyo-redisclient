@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.github.variflight</groupId>
-	<artifactId>jedis-ext</artifactId>
+	<groupId>com.feeyo.jedis</groupId>
+	<artifactId>feeyo-redisclient</artifactId>
 	<version>2.9.0</version>
 	<packaging>jar</packaging>
 
-	<name>jedis-ext</name>
+	<name>feeyo-redisclient</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
